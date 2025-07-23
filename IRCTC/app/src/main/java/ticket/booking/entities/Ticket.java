@@ -1,75 +1,87 @@
-import java.sql.Time;
-import java.util.List;
-import java.util.Map;
+package ticket.booking.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+import java.util.Date;
+
+
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@JsonNaming(PropertyNamingStrategy.class)
 
-public class Train {
+public class Ticket {
+    private String ticketId;
 
-      private String trainId;
+    private String userId;
+    private String source;
+    private  String destination;
 
-      private String trainNo;
+    private Date dateOfTravel;
 
-      private List<List<Integer>> seats;
+    private Train train;
 
-      private Map<String, String> stationTimes;
+    public Ticket(){};
+    public Ticket(String ticketId, String userId, String source, String destination, Date dateOfTravel, Train train) {
+        this.ticketId = ticketId;
+        this.userId = userId;
+        this.source = source;
+        this.destination = destination;
+        this.dateOfTravel = dateOfTravel;
+        this.train = train;
+    }
 
-      private List<String> stations;
+    public String getTicketInfo(){
+        return String.format("Ticket ID : %s belong to user%s from %s to %s on %s", ticketId,userId, source, destination, dateOfTravel );
+    }
 
-      public Train(){}
+    public String getTicketId() {
+        return ticketId;
+    }
 
-      public Train(String trainId, String trainNo, List<List<Integer>> seats, Map<String, String> stationTimes, List<String> stations){
-            this.trainId = trainId;
-            this.trainNo = trainNo;
-            this.seats = seats;
-            this.stationTimes = stationTimes;
-            this.stations = stations;
-      }
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
+    }
 
-      public List<String> getStations(){
-            return stations;
-      }
+    public String getUserId() {
+        return userId;
+    }
 
-      public List<List<Integer>> getSeats() {
-            return seats;
-      }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-      public void setSeats(List<List<Integer>> seats){
-            this.seats = seats;
-      }
+    public String getSource() {
+        return source;
+    }
 
-      public String getTrainId(){
-            return trainId;
-      }
+    public void setSource(String source) {
+        this.source = source;
+    }
 
-      public Map<String, String> getStationTimes(){
-            return stationTimes;
-      }
+    public String getDestination() {
+        return destination;
+    }
 
-      public String getTrainNo(){
-            return trainNo;
-      }
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 
-      public void setTrainNo(String trainNo){
-            this.trainNo = trainNo;
-      }
+    public Date getDateOfTravel() {
+        return dateOfTravel;
+    }
 
-      public void setTrainId(String trainId){
-            this.trainId = trainId;
-      }
+    public void setDateOfTravel(Date dateOfTravel) {
+        this.dateOfTravel = dateOfTravel;
+    }
 
-      public void setStationTimes(Map<String, String> stationTimes){
-            this.stationTimes = stationTimes;
-      }
+    public Train getTrain() {
+        return train;
+    }
 
-      public void setStations(List<String> stations){
-            this.stations = stations;
-      }
-
-      public String getTrainInfo(){
-            return String.format("Train ID: %s Train No: %s", trainId, trainNo);
-      }
-
+    public void setTrain(Train train) {
+        this.train = train;
+    }
 }
-
